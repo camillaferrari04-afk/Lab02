@@ -105,4 +105,5 @@ kirja libro
 lehti rivista
 sanomalehti giornale
 kynä penna
-paperi carta
+alieno andrea
+alinno astro

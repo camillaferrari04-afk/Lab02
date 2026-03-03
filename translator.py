@@ -1,27 +1,54 @@
+from dictionary import Dictionary
+
 class Translator:
 
     def __init__(self):
         pass
 
     def printMenu(self):
-        # 1. Aggiungi nuova parola
-        # 2. Cerca una traduzione
-        # 3. Cerca con wildcard
-        # 4. Exit
-        pass
+        action=input("-------------------------- \n "
+              "Translator Alien-Italian \n"
+              "--------------------------\n"
+              "1. Aggiungi nuova parola \n"
+              "2. Cerca una traduzione\n"
+              "3. Cerca con wildcard\n"
+              "4. Stampa tutto il Dizionario\n"
+              "5. Exit\n"
+              "--------------------------\n"
+              "\n")
+        if action.isdigit():
+            if 1 <= int(action) <= 5:
+                return int(action)
+        print("Valore non valido")
+        return None
 
-    def loadDictionary(self, dict):
-        # dict is a string with the filename of the dictionary
-        pass
+    #crea dizionario parola_aliena:traduzione
+    def loadDictionary(self, dicti:str) ->Dictionary:
+        dictionary=dict()
+        try:
+            infile=open(dicti,"r")
+            for line in infile:
+                line=line.strip().split()
+                if dictionary.get(line[0], None) != None:
+                    dictionary[line[0]].append(line[1])
+                else:
+                    dictionary[line[0].lower()]=[line[1].lower()]
 
-    def handleAdd(self, entry):
-        # entry is a tuple <parola_aliena> <traduzione1 traduzione2 ...>
-        pass
+        except FileNotFoundError:
+            print("File non trovato")
 
-    def handleTranslate(self, query):
-        # query is a string <parola_aliena>
-        pass
+        dictionary_object=Dictionary(dictionary)
+        return dictionary_object
 
-    def handleWildCard(self,query):
-        # query is a string with a ? --> <par?la_aliena>
-        pass
+    def handleAdd(self, entry:list, dictionary:Dictionary):
+        words=dictionary.addWord(entry)
+        return words
+
+
+    def handleTranslate(self, entry:str, dictionary:Dictionary):
+        translation=dictionary.translate(entry.lower())
+        return translation
+
+    def handleWildCard(self,query:str, dictionary:Dictionary):
+        translation = dictionary.translateWordWildCard(query)
+        return translation
