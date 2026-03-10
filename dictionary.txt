@@ -107,3 +107,6 @@ sanomalehti giornale
 kynä penna
 alieno andrea
 alinno astro
+alukni mappa
+alukni indicazione
+asd pietra

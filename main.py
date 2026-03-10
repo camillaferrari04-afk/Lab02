@@ -5,9 +5,7 @@ t = tr.Translator()
 
 while True:
 
-    txtIn=None
-    while txtIn is None:
-        txtIn=t.printMenu()
+    txtIn=t.printMenu()
 
     if int(txtIn) == 5:
         break
